@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SharedShadowRepro.CardsPage"
+             Title="Cards">
+    <ContentPage.Resources>
+        <Shadow x:Key="CardShadow" Brush="Black" Offset="0,2" Radius="6" Opacity="0.4" />
+
+        <Style x:Key="CardStyle" TargetType="ContentView">
+            <Setter Property="Shadow" Value="{StaticResource CardShadow}" />
+        </Style>
+
+        <Style TargetType="ContentView">
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="BackgroundColor" Value="White" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="Shadow set from a StaticResource" FontAttributes="Bold" />
+            <ContentView Shadow="{StaticResource CardShadow}"><Label Text="Card A" /></ContentView>
+            <ContentView Shadow="{StaticResource CardShadow}"><Label Text="Card B" /></ContentView>
+
+            <Label Text="Shadow set from a Style setter" FontAttributes="Bold" />
+            <ContentView Style="{StaticResource CardStyle}"><Label Text="Card C" /></ContentView>
+            <ContentView Style="{StaticResource CardStyle}"><Label Text="Card D" /></ContentView>
+
+            <Label Text="Warnings logged:" FontAttributes="Bold" />
+            <Label x:Name="WarningsLabel" FontSize="12" TextColor="DarkRed" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
